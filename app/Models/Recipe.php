@@ -14,7 +14,7 @@ class Recipe extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
