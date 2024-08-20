@@ -16,7 +16,7 @@ jobs:
     - name: Set up PHP with necessary extensions
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.2'
         extensions: mbstring, sqlite, pdo, bcmath
         
     - name: Validate Composer
