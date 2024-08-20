@@ -27,7 +27,6 @@ class UpdateRecipeRequest extends FormRequest
             'description' => 'required',
             'ingredients' => 'required',
             'instructions' => 'required',
-            'image' => 'required',
             'tags' => 'required'
         ];
     }
