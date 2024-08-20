@@ -18,7 +18,10 @@ jobs:
       with:
         php-version: '8.0'
         extensions: mbstring, sqlite, pdo, bcmath
-    
+        
+    - name: Validate Composer
+      run: composer validate --strict
+      
     - name: Cache Composer dependencies
       uses: actions/cache@v2
       with:
@@ -28,7 +31,7 @@ jobs:
           ${{ runner.os }}-composer-
 
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install --prefer-dist --no-progress
     
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
