@@ -11,7 +11,7 @@ class StoreRecipeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,10 +23,9 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'user_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'ingrdients' => 'required',
+            'ingredients' => 'required',
             'instructions' => 'required',
             'image' => 'required',
             'tags' => 'required'
