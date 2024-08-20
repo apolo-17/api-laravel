@@ -7,11 +7,14 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RecipeController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         return RecipeResource::collection(Recipe::with('category', 'tags', 'user')->get());
@@ -33,6 +36,7 @@ class RecipeController extends Controller
 
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
+        $this->authorize('update', $recipe);
         $recipe->update($request->all());
         if ($tags = json_decode($request->tags)) {
             $recipe->tags()->sync($tags);
@@ -42,6 +46,7 @@ class RecipeController extends Controller
 
     public function destroy(Recipe $recipe)
     {
+        $this->authorize('delete', $recipe);
         $recipe->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT); //204
     }
