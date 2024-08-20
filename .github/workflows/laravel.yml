@@ -31,7 +31,7 @@ jobs:
           ${{ runner.os }}-composer-
 
     - name: Install Dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer install
     
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
